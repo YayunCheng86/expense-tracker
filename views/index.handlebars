@@ -47,9 +47,10 @@
                         <a href="/expenses/{{this._id}}/edit">
                             <button>edit</button>
                         </a>
-                        <a href="/expenses/delete">
-                            <button>delete</button>
-                        </a>
+                        <form method="POST" action="/expenses/{{this._id}}/delete?_method=DELETE">
+                            <button type="submit">delete</button>
+                        </form>
+                        
                     </div>
         
                 </div>

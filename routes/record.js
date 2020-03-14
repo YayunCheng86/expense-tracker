@@ -51,12 +51,30 @@ router.get('/:id/edit', (req, res) => {
 
 // edit an expense
 router.put('/:id/edit', (req, res) => {
-    res.send('edit t')
+    console.log(req.params.id)
+    const { name, date, category, amount } = req.body
+    Record.findById(req.params.id, (err, record) => {
+        if(err) return console.error(err)
+        record.name = name
+        record.date = date
+        record.category = category
+        record.amount = amount
+        record.save(err => {
+            if (err) return console.error(err)
+            res.redirect('/')    
+        })
+    })
 })
 
 // delete an expense
 router.delete('/:id/delete', (req, res) => {
-    res.send('delete')
+    Record.findById(req.params.id, (err, record) => {
+        if(err) return console.log(err)
+        record.remove(err => {
+            if(err) return console.log(err)
+            res.redirect('/')
+        })
+    })
 })
 
 
