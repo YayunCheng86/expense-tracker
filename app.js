@@ -41,6 +41,7 @@ require('./config/passport')(passport)
 
 app.use((req, res, next) => {
     res.locals.user = req.user
+    res.locals.isAuthenticated = req.isAuthenticated() 
     next()
 })
 
@@ -49,7 +50,7 @@ app.use((req, res, next) => {
 // require routes
 app.use('/', require('./routes/home'))
 app.use('/expenses', require('./routes/record'))
-app.use('/user', require('./routes/user'))
+app.use('/users', require('./routes/user'))
 
 
 

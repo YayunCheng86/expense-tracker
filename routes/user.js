@@ -23,7 +23,8 @@ router.post('/register', (req, res) => {
 })
 
 router.get('/logout', (req, res) => {
-    res.render('login')
+    req.logout()
+    res.redirect('/users/login')
 })
 
 
