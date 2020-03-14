@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Record = require('../models/record')
-const selectOption = require('../public/javascripts/main')
+// const selectOption = require('../public/javascripts/main')
 
 // read all expenses page
 router.get('/', (req, res) => {

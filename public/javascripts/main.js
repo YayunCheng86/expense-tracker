@@ -1,5 +1,6 @@
-function selectOption (record) {
-    console.log(record.category)
+function sweetAlert () {
+    // Swal.fire('Any fool can use a computer')
+    alert('happy')
 }
 
-module.exports = selectOption
+module.exports = sweetAlert
