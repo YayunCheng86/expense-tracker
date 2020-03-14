@@ -14,15 +14,15 @@ router.post('/login', (req, res, next) => {
     })(req, res, next)
 })
 
-router.get('/', (req, res) => {
+router.get('/regiter', (req, res) => {
     res.render('register')
 })
 
-router.post('/', (req, res) => {
+router.post('/register', (req, res) => {
     res.redirect('/')
 })
 
-router.get('/', (req, res) => {
+router.get('/logout', (req, res) => {
     res.render('login')
 })
 
