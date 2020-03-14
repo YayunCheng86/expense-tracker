@@ -15,7 +15,7 @@ router.post('/login', (req, res, next) => {
     })(req, res, next)
 })
 
-router.get('/regiter', (req, res) => {
+router.get('/register', (req, res) => {
     res.render('register')
 })
 
@@ -41,8 +41,7 @@ router.post('/register', (req, res) => {
                 bcrypt.hash(newUser.password, salt, (err, hash) => {
                     if (err) throw err
                     newUser.password = hash
-                    newUser
-                    .save()
+                    newUser.save()
                     .then(user => {
                         res.redirect('/')
                     })
