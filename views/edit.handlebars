@@ -1,0 +1,49 @@
+<div class="container mx-auto d-flex flex-column align-items-center">
+    <div class="row" style="width: 50%;">
+
+        <div class="d-flex col-12 mt-4">
+            <h6 class="col-4" style="font-size: smaller;">*必填項目</h6>
+            <h5 class="col-6">請修改你的支出</h3>
+        </div>
+
+    </div>
+
+    <form class='row d-flex flex-column' action="" style="width: 50%;">
+
+        <div class='d-flex col-12 mt-4'>
+            <label for="name" class="col-3">名稱*</label>
+            <input type="text" class="form-control col-7" placeholder="Username" aria-label="Username"
+                aria-describedby="basic-addon1" id="name">
+        </div>
+
+
+        <div class="form-group d-flex col-12 mt-4">
+            <label for="example-date-input" class="col-3 col-form-label">日期*</label>
+            <input class="form-control col-7" type="date" value="2011-08-19" id="example-date-input">
+        </div>
+
+
+        <div class="dropdown d-flex col-12 mt-2">
+            <label class="col-3">類別*</label>
+            <button class="btn btn-secondary dropdown-toggle col-7" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">交通</button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+        </div>
+
+
+        <div class='d-flex col-12 mt-4'>
+            <label for="expense" class="col-3 col-form-label">金額*</label>
+            <input type="text" class="form-control col-7" placeholder="Username" aria-label="Username"
+                aria-describedby="basic-addon1" id="expense">
+        </div>
+
+        <div class='d-flex col-12 mt-4 justify-content-center'>
+            <button type="submit" class="btn btn-outline-success d-flex col-4 justify-content-center">送出</button>
+        </div>
+
+    </form>
+</div>

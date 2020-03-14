@@ -1,0 +1,67 @@
+<div class="container" style="background-color: red;">
+    <div class="panel" style="background-color: brown; margin-left: 18%; width: 70%;">
+        <div class="row d-flex flex-column align-items-start">
+        
+            {{!-- dropdown --}}
+            <div class="dropdown col-9 mt-2" style="background-color: blue; padding:0%;">
+                <button class="btn btn-secondary dropdown-toggle col-12" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown button </button>
+        
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </div>
+        
+        
+        
+            {{!-- total amount --}}
+            <div class="total-amount col-9  mt-3" style="background-color: yellow;">
+                <h6>總金額：</h6>
+                <h1 class='d-flex justify-content-center' style="color: orangered;">{{totalAmount}}</h1>
+            </div>
+        
+        
+        
+            {{!-- expenses & btns--}}
+            <ul class="list-group col-12  mt-3" style="background-color: blue; padding:0%;">
+                {{#each records}}
+                <div class="d-flex">
+        
+                    <li class="list-group-item d-flex col-9 mr-3 align-items-center" style="background-color: peru;">
+        
+                        <div class="record-main col-auto mr-auto d-flex align-items-center" style="background-color: pink;">
+                            <i class="{{this.icon}} fa-lg"></i>
+                            <div class="record-content d-flex flex-column ml-2">
+                                <h5>{{this.name}}</h5>
+                                <small>{{this.date}}</small>
+                            </div>
+                        </div>
+        
+                        <h5 class="col-auto">{{this.amount}}</h5>
+        
+                    </li>
+        
+                    <div class="button d-flex align-items-center justify-content-around col-3" style="background-color: green;">
+                        <a href="/expenses/edit">
+                            <button>edit</button>
+                        </a>
+                        <a href="/expenses/delete">
+                            <button>delete</button>
+                        </a>
+                    </div>
+        
+                </div>
+                {{/each}}
+            </ul>
+                
+            {{!-- create btn --}}
+            <a class="col-3 mt-3" style="margin-left: 29%;" href="/expenses/new">
+                <button type="button" class="btn btn-secondary">新增支出</button>
+            </a>
+        </div>
+    </div>
+
+    
+</div>
