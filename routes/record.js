@@ -16,12 +16,14 @@ router.get('/new', authenticated, (req, res) => {
 // post a new record
 router.post('/new', authenticated, (req, res) => {
     const { name, date, category, amount } = req.body
+    const userId = req.user._id
   
     const record = new Record({
         name,
         date,
         category,
         amount,
+        userId,
     })
 
     record.save((err) => {
@@ -32,7 +34,7 @@ router.post('/new', authenticated, (req, res) => {
 
 // read the edit page
 router.get('/:id/edit', authenticated, (req, res) => {
-    Record.findById( req.params.id)
+    Record.findOne({ _id: req.params.id, userId: req.user._id })
     .lean()
     .exec((err, record) => {
         if(err) return console.log(err) 
@@ -53,7 +55,7 @@ router.get('/:id/edit', authenticated, (req, res) => {
 router.put('/:id/edit', authenticated, (req, res) => {
     console.log(req.params.id)
     const { name, date, category, amount } = req.body
-    Record.findById(req.params.id, (err, record) => {
+    Record.findOne({ _id: req.params.id, userId: req.user._id }, (err, record) => {
         if(err) return console.error(err)
         record.name = name
         record.date = date
@@ -68,7 +70,7 @@ router.put('/:id/edit', authenticated, (req, res) => {
 
 // delete an expense
 router.delete('/:id/delete', authenticated, (req, res) => {
-    Record.findById(req.params.id, (err, record) => {
+    Record.findOne({ _id: req.params.id, userId: req.user._id }, (err, record) => {
         if(err) return console.log(err)
         record.remove(err => {
             if(err) return console.log(err)
