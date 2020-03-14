@@ -5,6 +5,8 @@ const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const mongoose = require('mongoose')
+const session = require('express-session')
+const passport = require('passport')
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
@@ -23,7 +25,24 @@ db.once('open', () => {
     console.log('mongodb connected!')
 })
 
+// 載入session
+app.use(session({
+    secret: 'just do it',
+    resave: false,
+    saveUninitialized: true
+}))
 
+// 使用 Passport 
+app.use(passport.initialize())
+app.use(passport.session())
+
+// 載入 Passport config
+require('./config/passport')(passport)
+
+app.use((req, res, next) => {
+    res.locals.user = req.user
+    next()
+})
 
 // 6) 在首頁可以根據支出「類別」篩選支出；總金額的計算只會包括被篩選出來的支出總和
 
