@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
         if(err) return console.error(err)
 
         let totalAmount = 0
- 
+
         records.forEach(record => {
             totalAmount += record.amount
 
@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
                 case 'daily-necessities':
                     record.icon = 'fas fa-home'
                     break;
-                case 'traffic':
+                case 'transportation':
                     record.icon = 'fas fa-shuttle-van'
                     break;
                 case 'entertainment':

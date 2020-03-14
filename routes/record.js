@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Record = require('../models/record')
+const selectOption = require('../public/javascripts/main')
 
 // read all expenses page
 router.get('/', (req, res) => {
@@ -12,10 +13,10 @@ router.get('/new', (req, res) => {
     res.render('new')
 })
 
-// post a new expense
+// post a new record
 router.post('/new', (req, res) => {
     const { name, date, category, amount } = req.body
-
+  
     const record = new Record({
         name,
         date,
@@ -30,21 +31,34 @@ router.post('/new', (req, res) => {
 })
 
 // read the edit page
-router.get('/edit/:id', (req, res) => {
-    res.render('edit')
+router.get('/:id/edit', (req, res) => {
+    Record.findById( req.params.id)
+    .lean()
+    .exec((err, record) => {
+        if(err) return console.log(err) 
+
+        // remain select option
+        const categories = ['daily-necessities', 'transportation', 'entertainment', 'food', 'others']
+        categories.forEach(category => {
+            if(record.category === category){
+                record[`select${category}`] = true
+            }
+        })
+    
+        return res.render('edit', { record })
+    })
 })
 
 // edit an expense
-router.put('/edit/:id', (req, res) => {
+router.put('/:id/edit', (req, res) => {
     res.send('edit t')
 })
 
 // delete an expense
-router.delete('/delete/:id', (req, res) => {
+router.delete('/:id/delete', (req, res) => {
     res.send('delete')
 })
 
 
 module.exports = router
 
-// fa-lg

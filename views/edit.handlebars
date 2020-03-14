@@ -3,46 +3,47 @@
 
         <div class="d-flex col-12 mt-4">
             <h6 class="col-4" style="font-size: smaller;">*必填項目</h6>
-            <h5 class="col-6">請修改你的支出</h3>
+            <h5 class="col-6">請修改你的支出</h5>
         </div>
 
     </div>
 
-    <form class='row d-flex flex-column' action="" style="width: 50%;">
+    <form class='row d-flex flex-column' method="POST" action="/expenses/{{record._id}}/edit?_method=PUT" style="width: 50%;">
 
         <div class='d-flex col-12 mt-4'>
             <label for="name" class="col-3">名稱*</label>
-            <input type="text" class="form-control col-7" placeholder="Username" aria-label="Username"
-                aria-describedby="basic-addon1" id="name">
+            <input type="text" class="form-control col-7" placeholder="ex.媽媽的生日禮物" aria-label="name"
+                aria-describedby="basic-addon1" id="name" name="name" value="{{#if record }} {{record.name}} {{/if}}">
         </div>
 
 
         <div class="form-group d-flex col-12 mt-4">
             <label for="example-date-input" class="col-3 col-form-label">日期*</label>
-            <input class="form-control col-7" type="date" value="2011-08-19" id="example-date-input">
+            <input class="form-control col-7" type="date" id="example-date-input"
+                name="date" value={{#if record}} {{record.date}} {{/if}}>
         </div>
 
 
-        <div class="dropdown d-flex col-12 mt-2">
+        <div class="d-flex col-12 mt-2">
             <label class="col-3">類別*</label>
-            <button class="btn btn-secondary dropdown-toggle col-7" type="button" id="dropdownMenuButton"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">交通</button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-            </div>
+            <select class="custom-select col-7" id="inputGroupSelect01" name="category">
+                <option {{#if record.selectdaily-necessities}}selected{{/if}} value="daily-necessities">日用品</option>
+                <option {{#if record.selecttransportation}}selected{{/if}} value="transportation">交通</option>
+                <option {{#if record.selectentertainment}}selected{{/if}} value="entertainment">娛樂</option>
+                <option {{#if record.selectfood}}selected{{/if}} value="food">食物</option>
+                <option {{#if record.selectothers}}selected{{/if}} value="others">其他</option>
+            </select>
         </div>
 
 
         <div class='d-flex col-12 mt-4'>
             <label for="expense" class="col-3 col-form-label">金額*</label>
-            <input type="text" class="form-control col-7" placeholder="Username" aria-label="Username"
-                aria-describedby="basic-addon1" id="expense">
+            <input type="text" class="form-control col-7" placeholder="$$$" aria-label="Username"
+                aria-describedby="basic-addon1" id="expense" name="amount" value="{{#if record }} {{record.amount}} {{/if}}">
         </div>
 
         <div class='d-flex col-12 mt-4 justify-content-center'>
-            <button type="submit" class="btn btn-outline-success d-flex col-4 justify-content-center">送出</button>
+            <button type="submit" class="btn btn-outline-success d-flex col-4 justify-content-center">編輯完成</button>
         </div>
 
     </form>
