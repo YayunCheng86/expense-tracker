@@ -15,16 +15,20 @@ router.get('/new', authenticated, (req, res) => {
 
 // post a new record
 router.post('/new', authenticated, (req, res) => {
-    const { name, date, category, amount } = req.body
+    const { name, date, category, amount, merchant } = req.body
     const userId = req.user._id
-  
+    
+    
+
     const record = new Record({
         name,
         date,
         category,
         amount,
         userId,
+        merchant
     })
+
 
     record.save((err) => {
         if (err) return console.error(err)

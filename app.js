@@ -12,12 +12,14 @@ const methodOverride = require('method-override')
 const mongoose = require('mongoose')
 const session = require('express-session')
 const passport = require('passport')
+const flash = require('connect-flash')
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
+app.use(flash())
 
 mongoose.connect('mongodb://localhost/expense-tracker', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 const db = mongoose.connection
@@ -47,6 +49,8 @@ require('./config/passport')(passport)
 app.use((req, res, next) => {
     res.locals.user = req.user
     res.locals.isAuthenticated = req.isAuthenticated() 
+    res.locals.success_msg = req.flash('success_msg')
+    res.locals.warning_msg = req.flash('warning_msg')
     next()
 })
 

@@ -6,6 +6,9 @@ const recordSchema = new Schema ({
         type: String,
         required: true
     },
+    merchant: {
+        type: String
+    },
     category: {
         type: String,
         required: true
@@ -17,9 +20,6 @@ const recordSchema = new Schema ({
     amount: {
         type: Number,
         required: true
-    },
-    totalAmount: {
-        type: Number
     },
     userId: {
         type: Schema.Types.ObjectId,
